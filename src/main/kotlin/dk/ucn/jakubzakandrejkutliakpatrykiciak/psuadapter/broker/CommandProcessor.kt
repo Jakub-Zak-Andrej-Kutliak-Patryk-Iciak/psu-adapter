@@ -15,7 +15,7 @@ class CommandProcessor(
     fun process(): Array<ParkingLot> {
         val parkingData = psuService.getParkingLots()
         dataPublisher.publishMessage(parkingData)
-        logger.info("New parking data has been published: $parkingData")
+        logger.info("New data has been published: $parkingData")
         return parkingData
     }
 }
