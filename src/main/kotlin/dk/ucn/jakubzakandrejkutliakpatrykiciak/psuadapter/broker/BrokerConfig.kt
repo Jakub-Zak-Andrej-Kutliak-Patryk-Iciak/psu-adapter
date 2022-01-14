@@ -14,16 +14,16 @@ class BrokerConfig(
 ) {
     @Bean
     fun commandQueue(): Queue {
-        return Queue(psuCommandQueue);
+        return Queue(psuCommandQueue)
     }
 
     @Bean
     fun parkingServiceQueue(): Queue {
-        return Queue(parkingServiceQueue);
+        return Queue(parkingServiceQueue)
     }
 
     @Bean
     fun converter(): MessageConverter {
-        return Jackson2JsonMessageConverter();
+        return Jackson2JsonMessageConverter()
     }
 }
