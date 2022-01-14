@@ -6,13 +6,13 @@ import org.springframework.stereotype.Component
 
 @Component
 class CommandProcessor(
-    val messagePublisher: MessagePublisher,
+    val messageProducer: MessageProducer,
     val psuService: PsuService,
 ) {
 
     fun process(): Array<ParkingLot> {
         val parkingData = psuService.getParkingLots()
-        messagePublisher.publishMessage(parkingData)
+        messageProducer.publishMessage(parkingData)
         return parkingData
     }
 }

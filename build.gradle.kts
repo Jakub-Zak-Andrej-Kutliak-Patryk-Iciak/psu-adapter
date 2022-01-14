@@ -24,6 +24,7 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.2")
 	testImplementation("org.springframework.amqp:spring-rabbit-test:2.3.9")
+	implementation("com.rabbitmq:amqp-client:5.14.0")
 }
 
 tasks.withType<KotlinCompile> {

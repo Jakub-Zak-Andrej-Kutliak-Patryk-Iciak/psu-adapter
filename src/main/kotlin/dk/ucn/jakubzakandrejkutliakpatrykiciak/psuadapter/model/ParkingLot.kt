@@ -1,8 +1,12 @@
 package dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.model
 
+import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ParkingLot(
-    val parkingProvider: String,
-    val name: String,
-    val longitude: Double,
-    val latitude: Double
+    @JsonProperty("parkingProvider") val parkingProvider: String,
+    @JsonProperty("name") val name: String,
+    @JsonProperty("longitude") val longitude: Double,
+    @JsonProperty("latitude") val latitude: Double
 )
