@@ -8,7 +8,7 @@ class RabbitListener(
     val commandProcessor: CommandProcessor
 ) {
 
-    @RabbitListener(queues = ["\${broker.commandQueue}"])
+    @RabbitListener(queues = ["\${broker.refreshDataRequest}"])
     fun refreshParkingData() {
         commandProcessor.process()
     }

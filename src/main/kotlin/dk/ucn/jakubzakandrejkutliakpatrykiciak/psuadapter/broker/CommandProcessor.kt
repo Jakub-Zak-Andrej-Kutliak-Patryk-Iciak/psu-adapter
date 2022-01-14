@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component
 
 @Component
 class CommandProcessor(
-    val dataPublisher: DataPublisher,
+    val messagePublisher: MessagePublisher,
     val psuService: PsuService,
 ) {
     val logger = LoggerFactory.getLogger(CommandProcessor::class.java)
 
     fun process(): Array<ParkingLot> {
         val parkingData = psuService.getParkingLots()
-        dataPublisher.publishMessage(parkingData)
+        messagePublisher.publishMessage(parkingData)
         logger.info("New data has been published: $parkingData")
         return parkingData
     }

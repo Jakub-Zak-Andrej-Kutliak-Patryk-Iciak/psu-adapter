@@ -9,17 +9,17 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class BrokerConfig(
-    @Value("\${broker.commandQueue}") val psu_command_queue: String,
-    @Value("\${broker.publishQueue}") val parking_service_queue: String
+    @Value("\${broker.refreshDataRequest}") val psuCommandQueue: String,
+    @Value("\${broker.refreshDataResponse}") val parkingServiceQueue: String
 ) {
     @Bean
     fun commandQueue(): Queue {
-        return Queue(psu_command_queue);
+        return Queue(psuCommandQueue);
     }
 
     @Bean
     fun parkingServiceQueue(): Queue {
-        return Queue(parking_service_queue);
+        return Queue(parkingServiceQueue);
     }
 
     @Bean

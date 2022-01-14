@@ -5,11 +5,11 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 
 @Component
-class DataPublisher(
+class MessagePublisher(
     val template: RabbitTemplate,
-    @Value("\${broker.publishQueue}") val parking_service_queue: String
+    @Value("\${broker.refreshDataResponse}") val parkingServiceQueue: String
 ) {
     fun publishMessage(message: Any) {
-        template.convertAndSend(parking_service_queue, message)
+        template.convertAndSend(parkingServiceQueue, message)
     }
 }
