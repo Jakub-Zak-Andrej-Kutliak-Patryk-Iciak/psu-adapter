@@ -11,7 +11,6 @@ import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Component
 import java.nio.charset.StandardCharsets
 
-
 @Component
 class MessageConsumer(
     @Value("\${broker.refreshDataRequest}") private val refreshDataRequestQueue: String,
