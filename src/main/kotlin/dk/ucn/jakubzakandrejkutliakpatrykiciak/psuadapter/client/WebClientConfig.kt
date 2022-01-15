@@ -15,8 +15,8 @@ class WebClientConfig {
     @Bean
     fun restTemplate(builder: RestTemplateBuilder): RestTemplate {
         val restTemplate = builder
-            .setConnectTimeout(Duration.ofMillis(3000))
-            .setReadTimeout(Duration.ofMillis(3000))
+            .setConnectTimeout(Duration.ofMillis(10000))
+            .setReadTimeout(Duration.ofMillis(10000))
             .build()
         val messageConverters: MutableList<HttpMessageConverter<*>> = ArrayList()
         val converter = MappingJackson2HttpMessageConverter()

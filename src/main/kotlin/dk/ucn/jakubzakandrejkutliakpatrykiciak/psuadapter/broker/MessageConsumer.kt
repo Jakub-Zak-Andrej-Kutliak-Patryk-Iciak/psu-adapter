@@ -1,6 +1,5 @@
 package dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.broker
 
-import com.rabbitmq.client.Channel
 import com.rabbitmq.client.Connection
 import com.rabbitmq.client.DeliverCallback
 import com.rabbitmq.client.Delivery
@@ -27,7 +26,11 @@ class MessageConsumer(
         val deliverCallback = DeliverCallback { consumerTag: String?, delivery: Delivery ->
             val message = String(delivery.body, StandardCharsets.UTF_8)
             logger.info("Received command '$message' from ${refreshDataRequestQueue}")
-            commandProcessor.process()
+            try {
+                commandProcessor.process()
+            } catch (e: RuntimeException) {
+                logger.error(e.message)
+            }
         }
         val channel = connection.createChannel()
         channel.queueDeclare(refreshDataRequestQueue, true, false, false, null)
