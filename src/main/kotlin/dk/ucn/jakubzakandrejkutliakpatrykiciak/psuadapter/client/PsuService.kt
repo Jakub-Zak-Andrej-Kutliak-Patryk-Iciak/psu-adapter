@@ -19,11 +19,17 @@ class PsuService(
         return try {
             val parkingLots = restTemplate.getForEntity(psuUrl, Array<PsuParkingLot>::class.java).body ?: throw RuntimeException()
             logger.info("Received parking data - ${parkingLots.size} element(s)")
-            Arrays.stream(parkingLots).map { psuParking -> ParkingLot("psu", psuParking.name, psuParking.coord.split(",")[0].toDouble(), psuParking.coord.split(",")[1].toDouble()) }
-                .collect(Collectors.toList()).toTypedArray()
+            Arrays.stream(parkingLots).map { psuParking -> ParkingLot(
+                "psu",
+                psuParking.name,
+                psuParking.coord.split(",")[0].toDouble(),
+                psuParking.coord.split(",")[1].toDouble(),
+                psuParking.max.toInt(),
+                psuParking.current.toInt()
+            ) }.collect(Collectors.toList()).toTypedArray()
         } catch (e: java.lang.RuntimeException) {
-            logger.error("Failure trying to get PSU Service data - providing fallback value")
-            arrayOf(ParkingLot("Fallback - PSU Parking Provider", "Fallback - UCN Parking", 0.0, 0.0))
+            logger.error("Failure trying to get PSU Service data")
+            throw e
         }
     }
 }
