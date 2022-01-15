@@ -1,4 +1,4 @@
-package dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.model
+package dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.serialization.Serializable

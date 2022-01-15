@@ -17,24 +17,21 @@ import java.nio.charset.StandardCharsets
 class MessageConsumer(
     @Value("\${broker.refreshDataRequest}") private val refreshDataRequestQueue: String,
     private val commandProcessor: CommandProcessor,
-    connection: Connection
+    private val connection: Connection
 ) {
-    private val channel: Channel
     private val logger = LoggerFactory.getLogger(this.javaClass)
 
     @Async
     @EventListener(ApplicationStartedEvent::class)
-    fun afterAppStarted() {
+    fun consumeRefreshDataRequestQueue() {
         val deliverCallback = DeliverCallback { consumerTag: String?, delivery: Delivery ->
             val message = String(delivery.body, StandardCharsets.UTF_8)
             logger.info("Received command '$message' from ${refreshDataRequestQueue}")
             commandProcessor.process()
         }
+        val channel = connection.createChannel()
+        channel.queueDeclare(refreshDataRequestQueue, true, false, false, null)
         logger.info("Starting consuming...")
         channel.basicConsume(refreshDataRequestQueue, true, deliverCallback) { consumerTag: String -> }
-    }
-    init {
-        channel = connection.createChannel()
-        channel.queueDeclare(refreshDataRequestQueue, true, false, false, null)
     }
 }

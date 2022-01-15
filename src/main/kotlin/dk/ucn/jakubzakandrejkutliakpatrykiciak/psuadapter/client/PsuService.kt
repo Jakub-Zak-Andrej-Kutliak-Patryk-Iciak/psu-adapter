@@ -1,6 +1,6 @@
 package dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.client
 
-import dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.model.ParkingLot
+import dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.dto.ParkingLot
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component

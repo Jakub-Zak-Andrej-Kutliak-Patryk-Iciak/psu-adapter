@@ -1,7 +1,7 @@
 package dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.controller
 
 import dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.broker.CommandProcessor
-import dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.model.ParkingLot
+import dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.dto.ParkingLot
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping

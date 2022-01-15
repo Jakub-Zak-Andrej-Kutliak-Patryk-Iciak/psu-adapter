@@ -3,7 +3,8 @@ package dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.broker
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.rabbitmq.client.Channel
 import com.rabbitmq.client.Connection
-import dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.model.ParkingLot
+import dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.dto.ParkingLot
+import dk.ucn.jakubzakandrejkutliakpatrykiciak.psuadapter.dto.RefreshDataResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
@@ -18,11 +19,11 @@ class MessageProducer(
     private val logger = LoggerFactory.getLogger(this.javaClass)
 
     @Throws(IOException::class)
-    fun publishMessage(message: Array<ParkingLot>) {
+    fun publishMessage(message: RefreshDataResponse) {
         val objectWriter = ObjectMapper().writer().withDefaultPrettyPrinter()
         val json = objectWriter.writeValueAsString(message)
         channel.basicPublish("", refreshDataResponseQueue, null, json.toByteArray())
-        logger.info("New data published to " + refreshDataResponseQueue + ": " + message.size + " parking lots")
+        logger.info("New data published to " + refreshDataResponseQueue + ": " + message.parkingData.size + " parking lots")
     }
 
     init {
