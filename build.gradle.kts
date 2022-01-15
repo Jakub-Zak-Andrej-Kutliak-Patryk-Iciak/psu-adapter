@@ -18,12 +18,11 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web:2.6.2")
-	implementation("org.springframework.boot:spring-boot-starter-amqp:2.6.2")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.2")
-	testImplementation("org.springframework.amqp:spring-rabbit-test:2.3.9")
+	implementation("com.rabbitmq:amqp-client:5.14.0")
 }
 
 tasks.withType<KotlinCompile> {
