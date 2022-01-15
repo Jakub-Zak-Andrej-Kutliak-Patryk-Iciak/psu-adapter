@@ -23,8 +23,8 @@ class PsuService(
             Arrays.stream(parkingLots).map { psuParking -> ParkingLot(
                 "psu",
                 psuParking.name,
-                psuParking.coord.split(",")[0].toDouble(),
                 psuParking.coord.split(",")[1].toDouble(),
+                psuParking.coord.split(",")[0].toDouble(),
                 psuParking.max.toInt(),
                 psuParking.current.toInt()
             ) }.collect(Collectors.toList()).toTypedArray()
